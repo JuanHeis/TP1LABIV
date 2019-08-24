@@ -27,7 +27,12 @@ function comparar(){
                 console.log('eureka!')
             }
 }
-function parValido
+function parValido(){
+    segundoElemento.classList.remove('hide')
+    segundoElemento.classList.add('flip-vertical-fwd', 'show')
+    primerElemento.classList.remove('hide')
+    primerElemento.classList.add('flip-vertical-fwd', 'show')
+}
 function reIniciar(){
     clicks=0
     primerElemento.classList.remove('flip-vertical-fwd', 'show')
