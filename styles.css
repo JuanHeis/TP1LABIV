@@ -1,0 +1,40 @@
+body {
+	margin: 0px;
+	height: 100%;
+}
+html {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
+header {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #f1f1f1;
+	height: 100px;
+	padding: 25px;
+	width: 100%;
+	margin: 0px;
+}
+footer {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #f1f1f1;
+	height: 100px;
+	padding: 25px;
+	width: 100%;
+	margin: 0px;
+}
+.pantallaJuego {
+	margin: 5% 25% 5% 25%;
+	background-color: #f1f1f1;
+	border-radius: 2px;
+}
+.elementoJuego {
+	border-radius: 2px;
+	margin: 5px;
+	height: 100px;
+	width:  16.6%;
+	background-color: #AfAfAf;
+}
+.horizontal{
+	display: flex;
+}
