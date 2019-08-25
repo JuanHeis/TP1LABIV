@@ -40,7 +40,7 @@ function BuscarFicha(unElemento) {
     return salida
 }
 
-
+//commit D:<
 function CompararFichas() {
     if (primerFicha != null && segundaFicha != null)
         if (primerFicha.id != segundaFicha.id)
