@@ -1,27 +1,27 @@
 var clicks = 0;
-var primerElemento;
-var segundoElemento;
-var elementosEncontrados = []
+var primerFicha;
+var segundaFicha;
+var fichasEncontradas = []
 var limitClick = false;
 
-function flip(elemento) {
+function Jugar(FichaId) {
     if (!limitClick) {
         clicks++
         if (clicks == 1) {
-            primerElemento = document.getElementById(elemento)
-            if (!buscarElemento(primerElemento)) {
-                primerElemento.classList.remove('hide')
-                primerElemento.classList.add('flip-vertical-fwd', 'show')
-                console.log(primerElemento)
+            primerFicha = document.getElementById(FichaId)
+            if (!BuscarFicha(primerFicha)) {
+                primerFicha.classList.remove('hide')
+                primerFicha.classList.add(DAR_VUELTA, 'show')
+                console.log(primerFicha)
             }
         } else if (clicks == 2) {
             limitClick = true;
-            segundoElemento = document.getElementById(elemento)
-            if (!buscarElemento(segundoElemento)) {
-                segundoElemento.classList.remove('hide')
-                segundoElemento.classList.add('flip-vertical-fwd', 'show')
-                console.log(segundoElemento)
-                if (!comparar())
+            segundaFicha = document.getElementById(FichaId)
+            if (!BuscarFicha(segundaFicha)) {
+                segundaFicha.classList.remove('hide')
+                segundaFicha.classList.add(DAR_VUELTA, 'show')
+                console.log(segundaFicha)
+                if (!CompararFichas())
                     setTimeout(reIniciarAnimaciones, 500)
                 else reIniciarValores()
             }
@@ -29,9 +29,9 @@ function flip(elemento) {
     } else console.log("Dejai de hacer click po")
 }
 
-function buscarElemento(unElemento) {
+function BuscarFicha(unElemento) {
     let salida = false
-    elementosEncontrados.forEach(x => {
+    fichasEncontradas.forEach(x => {
         console.log('la wea')
         console.log(x.id == unElemento.id)
         if (x.id == unElemento.id)
@@ -41,11 +41,11 @@ function buscarElemento(unElemento) {
 }
 
 
-function comparar() {
-    if (primerElemento != null && segundoElemento != null)
-        if (primerElemento.id != segundoElemento.id)
-            if (primerElemento.src == segundoElemento.src) {
-                parValido()
+function CompararFichas() {
+    if (primerFicha != null && segundaFicha != null)
+        if (primerFicha.id != segundaFicha.id)
+            if (primerFicha.src == segundaFicha.src) {
+                parFichasValida()
                 console.log('eureka!')
                 return true
             } else return false
@@ -53,38 +53,43 @@ function comparar() {
     else return false
 }
 
-function parValido() {
-    primerElemento.classList.remove('hide')
-    primerElemento.classList.add('flip-vertical-fwd', 'show')
-    segundoElemento.classList.remove('hide')
-    segundoElemento.classList.add('flip-vertical-fwd', 'show')
-    elementosEncontrados.push(primerElemento)
-    elementosEncontrados.push(segundoElemento)
+function parFichasValida() {
+    primerFicha.classList.remove('hide')
+    primerFicha.classList.add(DAR_VUELTA, 'show')
+    segundaFicha.classList.remove('hide')
+    segundaFicha.classList.add(DAR_VUELTA, 'show')
+    fichasEncontradas.push(primerFicha)
+    fichasEncontradas.push(segundaFicha)
 }
 
 function reIniciarValores() {
-    primerElemento = null
-    segundoElemento = null
+    primerFicha = null
+    segundaFicha = null
     clicks = 0
     limitClick = false;
 }
 
 function reIniciarAnimaciones() {
-    primerElemento.classList.remove('flip-vertical-fwd', 'show')
-    primerElemento.classList.add('hide')
-    segundoElemento.classList.remove('flip-vertical-fwd', 'show')
-    segundoElemento.classList.add('hide')
+    primerFicha.classList.remove(DAR_VUELTA, 'show')
+    primerFicha.classList.add('hide')
+    segundaFicha.classList.remove(DAR_VUELTA, 'show')
+    segundaFicha.classList.add('hide')
     setTimeout(reIniciarValores, 100)
 }
 
 
-function comenzar() {
+function MezclarEmpezar() {
+    reIniciarJuego()
     let contadorRenglon3 = 0,
         contadorRenglon2 = 0,
         contadorRenglon1 = 0
-    while (idsFichaspar.length != 0 && idsFichasimpar.length != 0) {
-        if (idsFichaspar.length != 0) {
-            let posFicha = parseInt(Math.random() * idsFichaspar.length)
+    let idsMitadUNO = idsPrimeraMitad
+    let urlsMitadUNO = urlsPrimeraMitad
+    let idsMitadDOS = idsSegundaMitad
+    let urlsMitadDOS = urlsSegundaMitad
+    while (idsMitadUNO.length != 0 && idsMitadDOS.length != 0) {
+        if (idsMitadUNO.length != 0) {
+            let posFicha = parseInt(Math.random() * idsMitadUNO.length)
             let idRenglon = RENGLON_1
             if (contadorRenglon1 < MAX_FICHAS_POR_RENGLON) {
                 contadorRenglon1++
@@ -96,18 +101,16 @@ function comenzar() {
                 contadorRenglon3++
                 idRenglon = RENGLON_3
             }
-            let fichaID = idsFichaspar[posFicha]
-            let fichaURL = urlsFichaspar[posFicha]
+            let fichaID = idsMitadUNO[posFicha]
+            let fichaURL = urlsMitadUNO[posFicha]
             let renglon = document.getElementById("renglon" + idRenglon)
             let elemento = cuerpo[0] + fichaID + cuerpo[1] + fichaID + cuerpo[2] + fichaURL + cuerpo[3]
             renglon.innerHTML += elemento
-            idsFichaspar = eliminarElemento(idsFichaspar, fichaID)
-            urlsFichaspar = eliminarElemento(urlsFichaspar, fichaURL)
-
+            idsMitadUNO = eliminarElemento(idsMitadUNO, fichaID)
+            urlsMitadUNO = eliminarElemento(urlsMitadUNO, fichaURL)
         }
-        if (idsFichasimpar.length != 0) {
-            console.log(idsFichasimpar.length)
-            let posFicha = parseInt(Math.random() * idsFichasimpar.length)
+        if (idsMitadDOS.length != 0) {
+            let posFicha = parseInt(Math.random() * idsMitadDOS.length)
             if (contadorRenglon1 < MAX_FICHAS_POR_RENGLON) {
                 contadorRenglon1++
                 idRenglon = RENGLON_1
@@ -119,15 +122,28 @@ function comenzar() {
                 idRenglon = RENGLON_3
             }
             console.log("Llegue")
-            let fichaID = idsFichasimpar[posFicha]
-            let fichaURL = urlsFichasimpar[posFicha]
+            let fichaID = idsMitadDOS[posFicha]
+            let fichaURL = urlsMitadDOS[posFicha]
             let renglon = document.getElementById("renglon" + idRenglon)
             let elemento = cuerpo[0] + fichaID + cuerpo[1] + fichaID + cuerpo[2] + fichaURL + cuerpo[3]
             renglon.innerHTML += elemento
-            idsFichasimpar = eliminarElemento(idsFichasimpar, fichaID)
-            urlsFichasimpar = eliminarElemento(urlsFichasimpar, fichaURL)
+            idsMitadDOS = eliminarElemento(idsMitadDOS, fichaID)
+            urlsMitadDOS = eliminarElemento(urlsMitadDOS, fichaURL)
         } else console.log("no llegue")
     }
+
+}
+
+function reIniciarJuego() {
+    let renglon1 = document.getElementById("renglon" + RENGLON_1)
+    let renglon2 = document.getElementById("renglon" + RENGLON_2)
+    let renglon3 = document.getElementById("renglon" + RENGLON_3)
+
+    renglon1.innerHTML = ""
+    renglon2.innerHTML = ""
+    renglon3.innerHTML = ""
+
+    fichasEncontradas = []
 }
 
 function eliminarElemento(array, elemento) {
