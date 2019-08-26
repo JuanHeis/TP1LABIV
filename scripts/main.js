@@ -3,54 +3,68 @@ var primerFicha;
 var segundaFicha;
 var fichasEncontradas = []
 var limitClick = false;
+var hayintentos = true
 
 function Jugar(FichaId) {
     if (!limitClick) {
         clicks++
-        if (clicks == 1) {
-            primerFicha = document.getElementById(FichaId)
-            if (!BuscarFicha(primerFicha)) {
-                primerFicha.classList.remove('hide')
-                primerFicha.classList.add(DAR_VUELTA, 'show')
-                console.log(primerFicha)
+        if (hayintentos) {
+            if (clicks == 1) {
+                primerFicha = document.getElementById(FichaId)
+                if (!BuscarFicha(primerFicha)) {
+                    primerFicha.classList.remove('hide')
+                    primerFicha.classList.add(DAR_VUELTA, 'show')
+                    console.log(primerFicha)
+                }
+            } else if (clicks == 2) {
+                limitClick = true;
+                segundaFicha = document.getElementById(FichaId)
+                if (!BuscarFicha(segundaFicha)) {
+                    segundaFicha.classList.remove('hide')
+                    segundaFicha.classList.add(DAR_VUELTA, 'show')
+                    console.log(segundaFicha)
+                    if (!CompararFichas())
+                        setTimeout(reIniciarAnimaciones, 500)
+                    else reIniciarValores()
+                    HayIntentos()
+                    ParesRestantes()
+                }
             }
-        } else if (clicks == 2) {
-            limitClick = true;
-            segundaFicha = document.getElementById(FichaId)
-            if (!BuscarFicha(segundaFicha)) {
-                segundaFicha.classList.remove('hide')
-                segundaFicha.classList.add(DAR_VUELTA, 'show')
-                console.log(segundaFicha)
-                if (!CompararFichas())
-                    setTimeout(reIniciarAnimaciones, 500)
-                else reIniciarValores()
-            }
-        } else { reIniciarValores() }
+        } else reIniciarValores()
     } else console.log("Dejai de hacer click po")
 }
 
-function BuscarFicha(unElemento) {
+function BuscarFicha(unaFicha) {
     let salida = false
     fichasEncontradas.forEach(x => {
         console.log('la wea')
-        console.log(x.id == unElemento.id)
-        if (x.id == unElemento.id)
+        console.log(x.id == unaFicha.id)
+        if (x.id == unaFicha.id)
             salida = true
     })
     return salida
 }
 
-//commit D:<
+function HayIntentos() {
+    intentosRestantes--
+    intentosRestantes > 0 ? hayintentos = HAY_INTENTOS : hayintentos = NO_HAY_INTENTOS
+    document.getElementById('puntos').innerHTML = intentosRestantes
+}
+
+function ParesRestantes() {
+    document.getElementById('paresrestantes').innerHTML = (TOTAL_FICHAS - (fichasEncontradas.length / 2))
+}
+
 function CompararFichas() {
     if (primerFicha != null && segundaFicha != null)
         if (primerFicha.id != segundaFicha.id)
             if (primerFicha.src == segundaFicha.src) {
                 parFichasValida()
                 console.log('eureka!')
-                return true
-            } else return false
-    else return false
-    else return false
+                return IGUALES
+            } else return DISTINTAS
+    else return ES_LA_MISMA
+    else return DISTINTAS
 }
 
 function parFichasValida() {
@@ -67,6 +81,7 @@ function reIniciarValores() {
     segundaFicha = null
     clicks = 0
     limitClick = false;
+
 }
 
 function reIniciarAnimaciones() {
@@ -78,8 +93,10 @@ function reIniciarAnimaciones() {
 }
 
 
-function MezclarEmpezar() {
+function Mezclar() {
     reIniciarJuego()
+    HayIntentos()
+    ParesRestantes()
     let contadorRenglon3 = 0,
         contadorRenglon2 = 0,
         contadorRenglon1 = 0
@@ -104,7 +121,7 @@ function MezclarEmpezar() {
             let fichaID = idsMitadUNO[posFicha]
             let fichaURL = urlsMitadUNO[posFicha]
             let renglon = document.getElementById("renglon" + idRenglon)
-            let elemento = cuerpo[0] + fichaID + cuerpo[1] + fichaID + cuerpo[2] + fichaURL + cuerpo[3]
+            let elemento = cuerpoficha[0] + fichaID + cuerpoficha[1] + fichaID + cuerpoficha[2] + fichaURL + cuerpoficha[3]
             renglon.innerHTML += elemento
             idsMitadUNO = eliminarElemento(idsMitadUNO, fichaID)
             urlsMitadUNO = eliminarElemento(urlsMitadUNO, fichaURL)
@@ -125,7 +142,7 @@ function MezclarEmpezar() {
             let fichaID = idsMitadDOS[posFicha]
             let fichaURL = urlsMitadDOS[posFicha]
             let renglon = document.getElementById("renglon" + idRenglon)
-            let elemento = cuerpo[0] + fichaID + cuerpo[1] + fichaID + cuerpo[2] + fichaURL + cuerpo[3]
+            let elemento = cuerpoficha[0] + fichaID + cuerpoficha[1] + fichaID + cuerpoficha[2] + fichaURL + cuerpoficha[3]
             renglon.innerHTML += elemento
             idsMitadDOS = eliminarElemento(idsMitadDOS, fichaID)
             urlsMitadDOS = eliminarElemento(urlsMitadDOS, fichaURL)
@@ -139,6 +156,7 @@ function reIniciarJuego() {
     let renglon2 = document.getElementById("renglon" + RENGLON_2)
     let renglon3 = document.getElementById("renglon" + RENGLON_3)
 
+    intentosRestantes = INTENTOS;
     renglon1.innerHTML = ""
     renglon2.innerHTML = ""
     renglon3.innerHTML = ""
