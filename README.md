@@ -1,7 +1,7 @@
 # TPuno_LAB_IV<br>
 ***Alumno***: *Heis Juan*<br>
 ***Cátedra***: *Laboratorio IV*<br>
-***Profesor***: **<br>
+***Profesor***: *Ernesto Cullen*<br>
 ***Propuesto***: *Juego de memoria con Javascript*<br>
 
 
