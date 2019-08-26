@@ -1,6 +1,7 @@
 body {
     margin: 0px;
     height: 100%;
+    background-color: #224853;
 }
 
 html {
@@ -9,13 +10,54 @@ html {
     height: 100%;
 }
 
+h4 {
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+    color: #fcc179;
+}
+
+h2 {
+    margin-bottom: 0px;
+}
+
+p {
+    margin: 0px;
+}
+
 header {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f1f1f1;
+    font-family: 'Francois One', sans-serif;
+    background-color: #298c79;
     height: 100px;
-    padding: 25px;
+    padding: 0%;
     width: 100%;
     margin: 0px;
+    display: center;
+    color: #fcc179;
+}
+
+button {
+    font-family: 'Francois One', sans-serif;
+    background-color: #224853;
+    opacity: 10%;
+    border: 0;
+    border-radius: 2px;
+    color: #fcc179;
+    margin: 5px;
+}
+
+footer {
+    background: rgb(41, 140, 121);
+    background: linear-gradient(0deg, rgba(41, 140, 121, 1) 0%, rgba(34, 72, 83, 1) 100%);
+    color: #fcc179;
+    height: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 100%;
+    margin: 0px;
+    font-family: 'Francois One', sans-serif;
 }
 
 img {
@@ -23,19 +65,81 @@ img {
     height: 100%;
 }
 
-footer {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f1f1f1;
-    height: 100px;
-    padding: 25px;
-    width: 100%;
+
+/*.smooth-back{
+	margin: 0px;
+	float: center;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	filter: blur(8px);
+}*/
+
+.nombre-juego {
+    font-family: 'Dancing Script', cursive;
+    font-size: 35px;
     margin: 0px;
 }
 
-.pantallaJuego {
-    margin: 5% 25% 5% 25%;
-    background-color: #f1f1f1;
+.descripcion {
+    padding: 15px 15px 15px 15px;
+    background-color: #224853;
+    font-family: 'Francois One', sans-serif;
+}
+
+.no-smooth {
+    filter: blur(0px) !important;
+}
+
+.nav-button {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 100%;
+}
+
+.descripcion-titulo {
+    font-family: 'Dancing Script', cursive;
+    font-size: 30px;
+    text-align: center;
+    padding: 15px 15px 15px 15px;
+    background-color: #224853;
+}
+
+.nav-p {
+    display: flex;
+    margin: 0;
+    margin-left: 15px;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.contenedor {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 2.5% 20% 2.5% 20%;
+    background-color: #298c79;
+    color: #fcc179;
     border-radius: 2px;
+}
+
+.menu-text {
+    padding-left: 5%;
+}
+
+.menu-info {
+    padding-left: 5px;
+}
+
+.barra-separacion {
+    height: 2px;
+    width: 100%;
+    background-color: #298c79;
+    border-radius: 100px;
 }
 
 .elementoJuego {
@@ -43,10 +147,19 @@ footer {
     margin: 5px;
     height: 100px;
     width: 16.6%;
-    background-color: rgba(175, 175, 175, 0.178);
+    background-color: #6bc67c;
 }
 
-.horizontal {
+.piezaRenglon {
+    padding: 5px;
+}
+
+.renglon {
+    display: flex;
+    margin: 5px 0px 5px 0px;
+}
+
+.fila {
     display: flex;
 }
 

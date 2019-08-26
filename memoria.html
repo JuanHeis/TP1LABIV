@@ -3,28 +3,80 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700|Francois+One&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
 </head>
-<script src="scripts/main.js"></script>
-<script src="scripts/config.js"></script>
 
 <body>
     <header>
-        <h3>Juego de la memoria</h3>
-        <a onclick="MezclarEmpezar()">Empezar</a>
+        <nav class="nav-p">
+            <h3 class="nombre-juego">Juego de memoria</h3>
+            <div>
+                <button class="nav-button" onclick=>Descripción</button>
+                <button class="nav-button" href="#cjugar">¿Como Jugar?</button>
+            </div>
+        </nav>
     </header>
 
     <section>
-        <div class='pantallaJuego'>
-            <div id="renglon1" class='horizontal'></div>
-            <div id="renglon2" class='horizontal'></div>
-            <div id="renglon3" class='horizontal'></div>
+        <div class='contenedor'>
+            <div id="renglon1" class='fila'>
+
+            </div>
+            <div id="renglon2" class='fila'>
+
+            </div>
+            <div id="renglon3" class='fila'>
+
+            </div>
         </div>
     </section>
-
+    <section>
+        <div class="contenedor">
+            <div class="fila">
+                <button onclick="Mezclar()">Mezclar</button>
+                <h5 class="menu-text">Intentos restantes:</h5>
+                <h5 class="menu-info" id="puntos"></h5>
+                <h5 class="menu-text">Pares restantes: </h5>
+                <h5 class="menu-info" id="paresrestantes"></h5>
+            </div>
+        </div>
+    </section>
+    <section href="#info">
+        <div class="contenedor">
+            <h2 class="descripcion-titulo">Descripción</h2>
+            <div class="barra-separacion"></div>
+            <p class="descripcion">Juego de memoria con logos de productos relacionados a la programación web, tales como Google, Mozilla, Javascript, HTML:5<br><br> Propuesto como un trabajo práctico en Laboratorio IV, cuenta con una grilla de de seis por tres casillas, 17
+                intentos, nueve fichas distintas. <br><br> Este juego esta basado en el lenguaje de programación Javascript (puro) para su funcionamiento.<br> La interfaz está maquetada en HTML 5 y CSS
+            </p>
+        </div>
+    </section>
+    <section>
+        <div href="#cjugar" class="contenedor">
+            <h2 class="descripcion-titulo">¿Como jugar?</h2>
+            <div class="barra-separacion"></div>
+            <p class="descripcion">
+                Para jugar se debe hacer click en el botón de <strong>Empezar</strong>. <br> Una vez se tenga la grilla dibujada puede empezar a buscar pares, para esto se tiene que hacer click sobre los rectangulos más claros.<br> Si los pares que encontro
+                son distintos se volveran a ocultar, de lo contrario se quedaran boca arriba indicando que son correctos ¡Ojo! Tiene un límite de intentos para encontrar todos los pares
+            </p>
+        </div>
+    </section>
     <footer>
-        <h3> Jueguito we</h3>
+        <div class="renglon">
+            <h4 class="piezaRenglon">GitHub: </h4>
+            <a class="piezaRenglon" href="https://github.com/JuanHeis">Juan Heis  </a>
+        </div>
+        <div class="renglon">
+            <h4 class="piezaRenglon">Alumno: </h4>
+            <p class="piezaRenglon">Juan Iganacio Heis </p>
+        </div>
+        <div class="renglon">
+            <h4 class="piezaRenglon">Cátedra: </h4>
+            <p class="piezaRenglon">Laboratorio IV</p>
+        </div>
     </footer>
-
+    <script src="scripts/main.js"></script>
+    <script src="scripts/config.js"></script>
 </body>
 
 </html>

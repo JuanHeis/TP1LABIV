@@ -2,6 +2,9 @@ const MAX_FICHAS_POR_RENGLON = 6
 const RENGLON_1 = 1
 const RENGLON_2 = 2
 const RENGLON_3 = 3
+const INTENTOS = 18
+
+var intentosRestantes = INTENTOS
 const DAR_VUELTA = "flip-vertical-fwd"
 var idsPrimeraMitad = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 var urlsPrimeraMitad = ["chrome.svg", //1
@@ -27,4 +30,14 @@ var urlsSegundaMitad = ["chrome.svg", //1
     ]
     //1-11-1img/chrome.svg">
     //
-var cuerpo = ["<div class='elementoJuego'><img id='", "' class='hide' onclick=Jugar('", "') src='img/", "'></div>"]
+var cuerpoficha = ["<div class='elementoJuego'><img id='", "' class='hide' onclick=Jugar('", "') src='img/", "'></div>"]
+const HAY_INTENTOS = true
+const NO_HAY_INTENTOS = false
+
+const TOTAL_FICHAS = urlsPrimeraMitad.length;
+
+//Estados entre dos fichas//
+const IGUALES = true
+const DISTINTAS = false
+const ES_LA_MISMA = false
+    //a-----------------------//
